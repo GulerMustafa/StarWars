@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Coins from "./components/Coins";
 function App() {
   const [coins, setCoins] = useState([]);
 
@@ -18,7 +19,11 @@ function App() {
       });
   }, []);
 
-  return <div>Hello</div>;
+  return (
+    <>
+      <Coins coins={coins} />
+    </>
+  );
 }
 
 export default App;
