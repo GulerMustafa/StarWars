@@ -1,18 +1,16 @@
 import React from "react";
 import "./Ships.css";
 
-function ShipItem({ coins }) {
+function ShipItem({ ships }) {
+  // console.log(ships.name.replace(/\s/g,'-').toLowerCase())
   return (
-    <div className="coin-row">
-      <p>{coins.market_cap_rank}</p>
-      <div className="img-symbol">
-        <img src={coins.image} alt="" />
-        <p>{coins.symbol.toUpperCase()}</p>
+    <div className="ship-row">
+      <div className="ship-img">
+        <img src={require(`../assets/ships/${ships.name.replace(/\s/g,'-').toLowerCase()}.webp`)} alt="" />
       </div>
-      <p>${coins.current_price}</p>
-      <p>{coins.price_change_percentage_24h.toFixed(2)}%</p>
-      <p className="hide-mobile">${coins.total_volume.toLocaleString()}</p>
-      <p className="hide-mobile">${coins.market_cap.toLocaleString()}</p>
+      <p className="ship-name">{ships.name}</p>
+      <p className="ship-model">{ships.model}</p>
+      <p>{ships.hyperdrive_rating}</p>
     </div>
   );
 }

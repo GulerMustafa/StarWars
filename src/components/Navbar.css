@@ -1,32 +1,53 @@
+@import url(https://allfont.net/allfont.css?fonts=star-jedi);
+@import url("https://fonts.cdnfonts.com/css/star-wars");
 .navbar {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.icon {
-  font-size: 2rem;
-  color: #6900ff;
-}
 
-.purple {
-  color: #6900ff;
+.starwars {
+  color: #000;
+  /* -webkit-text-stroke: 0.2px #eefa81; */
+  /* font-family: "Star Jedi", arial; */
+  font-family: "Star Wars", sans-serif;
+  font-size: 60px;
+  font-weight: 500;
+  text-shadow: 1px 1px 1px #ffe81f;
+  /* letter-spacing: 5px; */
 }
-input{
+input {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 130px;
+  width: 0px;
   box-sizing: border-box;
-  border: 2px solid #ccc;
   border-radius: 4px;
+  border: none;
   font-size: 16px;
-  background-color: white;
-  background-position: 10px 10px; 
+  background-color: transparent;
+  background-size: 25px;
+  background-position: 15px center;
   background-repeat: no-repeat;
-  padding: 12px 20px 12px 40px;
-  transition: width 0.4s ease-in-out;
-  background-image: url('../assets/searchicon.png');
+  padding: 12px 20px 12px 60px;
+  transition: width 0.9s ease-in-out;
+  background-image: url("../assets/searchiconb.png");
+  border-radius: 50px;
+  border: 1px solid transparent;
 }
-input[type=text]:focus {
-  width: 40%;
+input[type="text"]:focus {
+  width: 20%;
+  background-color: #000;
+  color: #fff;
+  background-image: url("../assets/searchicony.png");
+  border: none;
+  outline: none;
+  border: 1px solid #ffe81f;
 }
+input[type="text"]:hover {
+  width: 20%;
+  background-color: #000;
+  background-image: url("../assets/searchicony.png");
+  border: 1px solid #ffe81f;
+}
+

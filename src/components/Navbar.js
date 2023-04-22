@@ -1,5 +1,4 @@
 import React from "react";
-import { FaCoins } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
@@ -10,9 +9,8 @@ function Navbar({ onSearch }) {
   return (
     <Link to="/">
       <div className="navbar">
-        <FaCoins className="icon" />
         <h1>
-          Coin <span className="purple">Search</span>
+          <span className="starwars">STAR <br/>WARS</span>
         </h1>
       </div>
       <div className="navbar">
@@ -20,7 +18,7 @@ function Navbar({ onSearch }) {
           type="text"
           id="search"
           name="search"
-          placeholder="Search.."
+          placeholder="Name / Model"
           onChange={handleOnChange}
         />
       </div>

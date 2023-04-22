@@ -4,11 +4,12 @@ import React, { useEffect, useState } from "react";
 import "./Ship.css";
 import DOMPurify from "dompurify";
 
-function Ship() {
+function Ship({ ships }) {
   const params = useParams();
   const [coin, setCoin] = useState({});
 
-  const url = `https://api.coingecko.com/api/v3/coins/${params.coinId}`;
+
+  const url = `https://swapi.dev/api/starships/${params}`;
 
   useEffect(() => {
     axios
@@ -20,6 +21,7 @@ function Ship() {
         console.log(error);
       });
   });
+  console.log(ships);
   return (
     <div>
       <div className="coin-container">
