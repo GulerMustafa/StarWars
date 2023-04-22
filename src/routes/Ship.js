@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useParams } from "react-router";
 import React, { useEffect, useState } from "react";
-import "./Coin.css";
+import "./Ship.css";
 import DOMPurify from "dompurify";
 
-function Coin() {
+function Ship() {
   const params = useParams();
   const [coin, setCoin] = useState({});
 
@@ -170,4 +170,4 @@ function Coin() {
   );
 }
 
-export default Coin;
+export default Ship;

@@ -1,10 +1,10 @@
 import React from "react";
-import CoinItem from "./CoinItem";
-import "./Coins.css";
+import ShipItem from "./ShipItem";
+import "./Ships.css";
 import { Link } from "react-router-dom";
-import Coin from "../routes/Coin";
+import Ship from "../routes/Ship";
 
-function Coins({ coins }) {
+function Ships({ coins }) {
   return (
     <div className="container">
       <div>
@@ -18,8 +18,8 @@ function Coins({ coins }) {
         </div>
         {coins.map((coins) => {
           return (
-            <Link to={`/coin/${coins.id}`} element={<Coin />} key={coins.id}>
-              <CoinItem coins={coins} />
+            <Link to={`/coin/${coins.id}`} element={<Ship />} key={coins.id}>
+              <ShipItem coins={coins} />
             </Link>
           );
         })}
@@ -28,4 +28,4 @@ function Coins({ coins }) {
   );
 }
 
-export default Coins;
+export default Ships;

@@ -1,7 +1,7 @@
 import React from "react";
-import "./Coins.css";
+import "./Ships.css";
 
-function CoinItem({ coins }) {
+function ShipItem({ coins }) {
   return (
     <div className="coin-row">
       <p>{coins.market_cap_rank}</p>
@@ -17,4 +17,4 @@ function CoinItem({ coins }) {
   );
 }
 
-export default CoinItem;
+export default ShipItem;

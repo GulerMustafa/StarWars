@@ -1,29 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { FaCoins } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-function Navbar({ coins, onSearch }) {
-  const [filteredCoins, setFilteredCoins] = useState(coins);
-  useEffect(() => {
-    setFilteredCoins(coins);
-  }, [coins]);
-  const filterCoins = (event) => {
-    let filterText = event.target.value;
-    let tempCoins = [...coins];
-    setFilteredCoins(
-      // eslint-disable-next-line array-callback-return
-      tempCoins.filter((coin) => {
-        if (
-          coin.symbol?.toLowerCase().includes(filterText) ||
-          coin.name?.toLowerCase().includes(filterText)
-        )
-          return coin;
-      })
-    );
+function Navbar({ onSearch }) {
+  const handleOnChange = (event) => {
+    onSearch(event.target.value);
   };
-
-  console.log(filteredCoins);
   return (
     <Link to="/">
       <div className="navbar">
@@ -38,11 +21,10 @@ function Navbar({ coins, onSearch }) {
           id="search"
           name="search"
           placeholder="Search.."
-          onChange={filterCoins}
+          onChange={handleOnChange}
         />
       </div>
     </Link>
   );
 }
-
 export default Navbar;
