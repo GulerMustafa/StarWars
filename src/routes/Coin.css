@@ -73,7 +73,9 @@ th {
 .stats .row p:first-child {
     color: #d3d3d3;
 }
-
+.about{
+    text-align: justify;
+}
 .about h3 {
     margin: 1rem 0;
 }

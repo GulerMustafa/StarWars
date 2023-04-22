@@ -12,6 +12,9 @@ function Navbar() {
           Coin <span className="purple">Search</span>
         </h1>
       </div>
+      <div className="navbar">
+        <input type="text" id="search" name="search" placeholder="Search.." />
+      </div>
     </Link>
   );
 }

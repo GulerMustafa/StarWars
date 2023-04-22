@@ -19,7 +19,7 @@ function Coin() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  });
   return (
     <div>
       <div className="coin-container">
