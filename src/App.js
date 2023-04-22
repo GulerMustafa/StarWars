@@ -25,7 +25,7 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar coins={coins} onSearch={(res) => setCoins(res)} />
       <Routes>
         <Route path="/" element={<Coins coins={coins} />} />
         <Route path="/coin" element={<Coin />}>
