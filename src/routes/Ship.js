@@ -4,153 +4,80 @@ import React, { useEffect, useState } from "react";
 import "./Ship.css";
 import DOMPurify from "dompurify";
 
-function Ship({ ships }) {
+function Ship() {
   const params = useParams();
-  const [coin, setCoin] = useState({});
-
-
-  const url = `https://swapi.dev/api/starships/${params}`;
+  const [ship, setShip] = useState({});
+  const pilots = ["Chewbacca", "Rey", "Antoc Merrick", "Poe Dameron", "Kylo Ren", "Luke Skywalker", "Wedge Antilles", "Plo Koon", "Han Solo", "Anakin Skywalker"];
+  const random = Math.floor(Math.random() * pilots.length);
+  const url = `https://swapi.dev/api/starships/${params.shipId}`;
 
   useEffect(() => {
     axios
       .get(url)
       .then((res) => {
-        setCoin(res.data);
+        setShip(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  });
-  console.log(ships);
+  }, []);
+
   return (
     <div>
-      <div className="coin-container">
-        <div className="content">
-          <h1>{coin.name}</h1>
-        </div>
+      <div className="ship-container">
+        <div className="content">{ship.name && <img className="ship-pic" src={require(`../assets/ships/${ship.name.replace(/\s/g, "-").toLowerCase()}.webp`)} alt="" />}</div>
         <div className="content">
           <div className="rank">
-            <span className="rank-btn">Rank # {coin.market_cap_rank}</span>
+            <span className="rank-btn-left">Hyperdrive Rating - {ship.hyperdrive_rating}</span>
+            <span className="rank-btn-right">Starship Class - {ship.starship_class}</span>
           </div>
           <div className="info">
-            <div className="coin-heading">
-              {coin.image ? <img src={coin.image.small} alt="" /> : null}
-              <p>{coin.name}</p>
-              {coin.symbol ? <p>{coin.symbol.toUpperCase()}/USD</p> : null}
+            <div className="ship-heading">
+              <p>{ship.model}</p>
             </div>
-            <div class="coin-price">
-              {coin.market_data?.current_price ? (
-                <h1>${coin.market_data.current_price.usd.toLocaleString()}</h1>
-              ) : null}
-            </div>
+            <div class="ship-price">{ship.cost_in_credits && <h1>${ship.cost_in_credits.toLocaleString("en-US", { style: "currency", currency: "USD" })}</h1>}</div>
           </div>
         </div>
         <div className="content">
-          <table>
-            <thead>
-              <tr>
-                <th>1h</th>
-                <th>24h</th>
-                <th>7d</th>
-                <th>14d</th>
-                <th>30d</th>
-                <th>1y</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  {coin.market_data?.price_change_percentage_1h_in_currency ? (
-                    <p>
-                      {coin?.market_data.price_change_percentage_1h_in_currency.usd.toFixed(
-                        1
-                      )}
-                      %
-                    </p>
-                  ) : null}
-                </td>
-                <td>
-                  {coin.market_data?.price_change_percentage_24h_in_currency ? (
-                    <p>
-                      {coin.market_data.price_change_percentage_24h_in_currency.usd.toFixed(
-                        1
-                      )}
-                      %
-                    </p>
-                  ) : null}
-                </td>
-                <td>
-                  {coin.market_data?.price_change_percentage_7d_in_currency ? (
-                    <p>
-                      {coin.market_data?.price_change_percentage_7d_in_currency.usd.toFixed(
-                        1
-                      )}
-                      %
-                    </p>
-                  ) : null}
-                </td>
-                <td>
-                  {coin.market_data?.price_change_percentage_14d_in_currency ? (
-                    <p>
-                      {coin.market_data?.price_change_percentage_14d_in_currency.usd.toFixed(
-                        1
-                      )}
-                      %
-                    </p>
-                  ) : null}
-                </td>
-                <td>
-                  {coin.market_data?.price_change_percentage_30d_in_currency ? (
-                    <p>
-                      {coin.market_data?.price_change_percentage_30d_in_currency.usd.toFixed(
-                        1
-                      )}
-                      %
-                    </p>
-                  ) : null}
-                </td>
-                <td>
-                  {coin.market_data?.price_change_percentage_1y_in_currency ? (
-                    <p>
-                      {coin.market_data?.price_change_percentage_1y_in_currency.usd.toFixed(
-                        1
-                      )}
-                      %
-                    </p>
-                  ) : null}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="content">
+          <div className="manufacturer">
+            <h2>Manufacturer</h2>
+            {ship.manufacturer && <p>{ship.manufacturer.replace(",", " /")}</p>}
+          </div>
           <div className="stats">
             <div className="left">
               <div className="row">
-                <h4>24 Hour Low</h4>
-                {coin.market_data?.low_24h ? (
-                  <p>${coin.market_data.low_24h.usd.toLocaleString()}</p>
-                ) : null}
+                <h4>Length</h4>
+                {ship.length ? <p>{ship.length} m</p> : null}
               </div>
               <div className="row">
-                <h4>24 Hour High</h4>
-                {coin.market_data?.high_24h ? (
-                  <p>${coin.market_data.high_24h.usd.toLocaleString()}</p>
-                ) : null}
+                <h4>Max Atmosphering Speed</h4>
+                {ship.max_atmosphering_speed && <p>{ship.max_atmosphering_speed} km/h</p>}
+              </div>
+              <div className="row">
+                <h4>Cargo Capacity</h4>
+                {ship.cargo_capacity ? <p>{ship.cargo_capacity}</p> : null}
+              </div>
+              <div className="row">
+                <h4>Pilot</h4>
+                <p>{pilots[random]}</p>
               </div>
             </div>
             <div className="right">
               <div className="row">
-                <h4>Market Cup</h4>
-                {coin.market_data?.market_cap ? (
-                  <p>${coin.market_data.market_cap.usd.toLocaleString()}</p>
-                ) : null}
+                <h4>Crew</h4>
+                {ship.crew && <p>{ship.crew}</p>}
               </div>
               <div className="row">
-                <h4>Circulating Supply</h4>
-                {coin.market_data?.circulating_supply ? (
-                  <p>${coin.market_data.circulating_supply.toLocaleString()}</p>
-                ) : null}
+                <h4>Passengers</h4>
+                {ship.passengers && <p>{ship.passengers}</p>}
+              </div>
+              <div className="row">
+                <h4>MGLT</h4>
+                {ship.consumables && <p>{ship.MGLT}</p>}
+              </div>
+              <div className="row">
+                <h4>Consumables</h4>
+                {ship.consumables && <p>{ship.consumables}</p>}
               </div>
             </div>
           </div>
@@ -158,13 +85,7 @@ function Ship({ ships }) {
         <div className="content">
           <div className="about">
             <h3>About</h3>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(
-                  coin.description ? coin.description.en : ""
-                ),
-              }}
-            ></p>
+            <p></p>
           </div>
         </div>
       </div>

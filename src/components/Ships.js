@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Ship from "../routes/Ship";
 
 function Ships({ ships }) {
+  
   return (
     <div className="container">
       <div>
@@ -16,8 +17,8 @@ function Ships({ ships }) {
         </div>
         {ships.map((ship, index) => {
           return (
-            <Link to={`/ship/${index}`} element={<Ship ships={ship} />} key={index}>
-              <ShipItem ships={ship} key={index} />
+            <Link to={`/ship/${ship.url.split('/')[5]}`} element={<Ship link={ship.url} />} key={index}>
+              <ShipItem ships={ship} key={index}  />
             </Link>
           );
         })}

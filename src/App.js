@@ -43,9 +43,9 @@ function App() {
       <Navbar onSearch={(res) => filterShips(res)} />
       <Routes>
         <Route path="/" element={<Ships ships={filteredShips} />} />
-        {/* <Route path="/coin" element={<Ship />}>
-          <Route path=":coinId" element={<Ship />} />
-        </Route> */}
+        <Route path="/ship" element={<Ship />}>
+          <Route path=":shipId" element={<Ship />} />
+        </Route>
       </Routes>
     </>
   );

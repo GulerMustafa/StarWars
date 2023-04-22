@@ -2,7 +2,6 @@ import React from "react";
 import "./Ships.css";
 
 function ShipItem({ ships }) {
-  // console.log(ships.name.replace(/\s/g,'-').toLowerCase())
   return (
     <div className="ship-row">
       <div className="ship-img">
