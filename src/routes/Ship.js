@@ -2,7 +2,6 @@ import axios from "axios";
 import { useParams } from "react-router";
 import React, { useEffect, useState } from "react";
 import "./Ship.css";
-import DOMPurify from "dompurify";
 
 function Ship() {
   const params = useParams();

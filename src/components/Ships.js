@@ -10,7 +10,7 @@ function Ships({ ships }) {
     <div className="container">
       <div>
         <div className="heading">
-          <p>#</p>
+          <p></p>
           <p className="coin-name">Ship Name</p>
           <p>Model</p>
           <p>Hyperdrive Rating</p>
