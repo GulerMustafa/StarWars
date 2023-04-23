@@ -34,7 +34,7 @@ function Ship() {
             <div className="ship-heading">
               <p>{ship.model}</p>
             </div>
-            <div class="ship-price">{ship.cost_in_credits && <h1>${ship.cost_in_credits.toLocaleString("en-US", { style: "currency", currency: "USD" })}</h1>}</div>
+            <div class="ship-price">{ship.cost_in_credits && <h1>{Number(ship.cost_in_credits).toLocaleString("en-US", { style: "currency", currency: "USD" })}</h1>}</div>
           </div>
         </div>
         <div className="content">
@@ -91,5 +91,4 @@ function Ship() {
     </div>
   );
 }
-
 export default Ship;
