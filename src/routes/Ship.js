@@ -8,8 +8,7 @@ function Ship() {
   const params = useParams();
   const [ship, setShip] = useState({});
   const [films, setFilms] = useState();
-  const pilots = ["Chewbacca", "Rey", "Antoc Merrick", "Poe Dameron", "Kylo Ren", "Luke Skywalker", "Wedge Antilles", "Plo Koon", "Han Solo", "Anakin Skywalker"];
-  const random = Math.floor(Math.random() * pilots.length);
+  const [pilot, setPilot] = useState();
   const url = `https://swapi.dev/api/starships/${params.shipId}`;
 
   useEffect(() => {
@@ -19,6 +18,9 @@ function Ship() {
         setShip(res.data);
         if (res.data.films.length > 0) {
           getFilm(res.data.films);
+        }
+        if (res.data.pilots.length > 0) {
+          getPilot(res.data.pilots);
         }
       })
       .catch((error) => {
@@ -35,7 +37,16 @@ function Ship() {
     );
     setFilms(items);
   };
-  console.log(films);
+
+  const getPilot = async (pilot) => {
+    let items = await Promise.all(
+      pilot.map(async (pilotUrl) => {
+        let res = await axios.get(pilotUrl);
+        return res.data;
+      })
+    );
+    setPilot(items);
+  };
 
   return (
     <div>
@@ -74,7 +85,7 @@ function Ship() {
               </div>
               <div className="row">
                 <h4>Pilot</h4>
-                <p>{pilots[random]}</p>
+                {pilot ? <p>{pilot[0].name}</p> : "N/A"}
               </div>
             </div>
             <div className="right">
@@ -101,15 +112,15 @@ function Ship() {
           <div className="content">
             <div className="about">
               <h2>Films</h2>
-              <div class="cards">
-                {films.map((film) => {
+              <div className="cards">
+                {films.map((film, index) => {
                   return (
-                    <>
-                      <figure class="card">
-                        <img src={require(`../assets/films/${film.title.replace(/\s/g, "-").toLowerCase()}.webp`)} alt="" />
-                        <figcaption class="card_title"><h4>{film.title}</h4></figcaption>
-                      </figure>
-                    </>
+                    <figure className="card" key={index}>
+                      <img src={require(`../assets/films/${film.title.replace(/\s/g, "-").toLowerCase()}.webp`)} alt="" />
+                      <figcaption className="card_title">
+                        <h4>{film.title}</h4>
+                      </figcaption>
+                    </figure>
                   );
                 })}
               </div>
