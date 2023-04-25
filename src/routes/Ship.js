@@ -6,6 +6,7 @@ import "./Ship.css";
 function Ship() {
   const params = useParams();
   const [ship, setShip] = useState({});
+  const [films, setFilms] = useState();
   const pilots = ["Chewbacca", "Rey", "Antoc Merrick", "Poe Dameron", "Kylo Ren", "Luke Skywalker", "Wedge Antilles", "Plo Koon", "Han Solo", "Anakin Skywalker"];
   const random = Math.floor(Math.random() * pilots.length);
   const url = `https://swapi.dev/api/starships/${params.shipId}`;
@@ -15,11 +16,24 @@ function Ship() {
       .get(url)
       .then((res) => {
         setShip(res.data);
+        if (res.data.films.length > 0) {
+          getFilm(res.data.films);
+        }
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  const getFilm = async (films) => {
+    let items = await Promise.all(
+      films.map(async (filmUrl) => {
+        let res = await axios.get(filmUrl);
+        return res.data;
+      })
+    );
+    setFilms(items);
+  };
 
   return (
     <div>
@@ -34,7 +48,7 @@ function Ship() {
             <div className="ship-heading">
               <p>{ship.model}</p>
             </div>
-            <div class="ship-price">{ship.cost_in_credits && <h1>{Number(ship.cost_in_credits).toLocaleString("en-US", { style: "currency", currency: "USD" })}</h1>}</div>
+            <div className="ship-price">{ship.cost_in_credits && <h1>{Number(ship.cost_in_credits).toLocaleString("en-US", { style: "currency", currency: "USD" })}</h1>}</div>
           </div>
         </div>
         <div className="content">
@@ -81,12 +95,14 @@ function Ship() {
             </div>
           </div>
         </div>
-        <div className="content">
-          <div className="about">
-            <h3>About</h3>
-            <p></p>
+        {films && (
+          <div className="content">
+            <div className="about">
+              <h3>About</h3>
+              <p></p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
