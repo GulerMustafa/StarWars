@@ -2,6 +2,7 @@ import axios from "axios";
 import { useParams } from "react-router";
 import React, { useEffect, useState } from "react";
 import "./Ship.css";
+import "./Card.css";
 
 function Ship() {
   const params = useParams();
@@ -34,6 +35,7 @@ function Ship() {
     );
     setFilms(items);
   };
+  console.log(films);
 
   return (
     <div>
@@ -98,8 +100,19 @@ function Ship() {
         {films && (
           <div className="content">
             <div className="about">
-              <h3>About</h3>
-              <p></p>
+              <h2>Films</h2>
+              <div class="cards">
+                {films.map((film) => {
+                  return (
+                    <>
+                      <figure class="card">
+                        <img src={require(`../assets/films/${film.title.replace(/\s/g, "-").toLowerCase()}.webp`)} alt="" />
+                        <figcaption class="card_title"><h4>{film.title}</h4></figcaption>
+                      </figure>
+                    </>
+                  );
+                })}
+              </div>
             </div>
           </div>
         )}

@@ -84,13 +84,6 @@
 .stats .row p:first-child {
   color: #d3d3d3;
 }
-.about {
-  text-align: justify;
-}
-.about h3 {
-  margin: 1rem 0;
-}
-
 @media screen and (max-width: 700px) {
   .ship-container .content {
     max-width: 100%;
@@ -124,4 +117,8 @@
   font-size: 20px;
   border-bottom: 1px solid #808080;
   padding-bottom: 15px;
+}
+.content .about h2{
+  text-align: center;
+  margin-bottom: 10px;
 }

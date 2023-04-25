@@ -15,6 +15,11 @@
   font-weight: 500;
   text-shadow: 1px 1px 1px #ffe81f;
   /* letter-spacing: 5px; */
+  transition: 0.3s;
+}
+.starwars:hover {
+  color: #ffe81f;
+  text-shadow: 2px 2px 2px #000;
 }
 input {
   display: flex;
