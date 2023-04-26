@@ -60,7 +60,7 @@ function Ships() {
       <div>
         <div className="heading">
           <p></p>
-          <p className="coin-name">Ship Name</p>
+          <p className="ship-name">Ship Name</p>
           <p>Model</p>
           <p>Hyperdrive Rating</p>
         </div>
