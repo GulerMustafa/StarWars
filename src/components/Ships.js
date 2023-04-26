@@ -14,13 +14,20 @@ function Ships() {
       .get(url)
       .then((response) => {
         setShips(response.data.results);
+        setHasNext(response.data.next != null);
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
   const [ships, setShips] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [hasNext, setHasNext] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [filteredShips, setFilteredShips] = useState(ships);
   useEffect(() => {
     setFilteredShips(ships);
@@ -34,7 +41,19 @@ function Ships() {
       })
     );
   };
-
+  const onLoadMore = async () => {
+    try {
+      setLoading(true);
+      let res = await axios.get(`${url}?page=${currentPage + 1}`);
+      setFilteredShips(filteredShips.concat(res.data.results));
+      setCurrentPage(currentPage + 1);
+      setHasNext(res.data.next != null);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="container">
       <SearchBar onSearch={(res) => filterShips(res)} />
@@ -53,6 +72,11 @@ function Ships() {
           );
         })}
       </div>
+      {hasNext && (
+        <button onClick={onLoadMore} disabled={loading}>
+          Load More
+        </button>
+      )}
     </div>
   );
 }
