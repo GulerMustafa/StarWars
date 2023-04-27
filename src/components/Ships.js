@@ -72,12 +72,10 @@ function Ships() {
           );
         })}
       </div>
-      {hasNext &&  (
+      {hasNext && (
         <div className="container">
-          <div className="loadbutton">
-            <button onClick={onLoadMore} disabled={loading}>
-              Load More
-            </button>
+          <div className="loadbutton" onClick={onLoadMore} disabled={loading}>
+            <p>Load More</p>
           </div>
         </div>
       )}

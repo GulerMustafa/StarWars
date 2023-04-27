@@ -10,7 +10,6 @@
 }
 .ship-container .content:first-child {
   max-width: 740px;
-  margin: 1rem auto;
   padding: 0.7rem 1rem;
   display: flex;
   flex-direction: column;
@@ -26,7 +25,6 @@
   display: flex;
   justify-content: space-between;
   grid-template-columns: repeat(2, 1fr);
-  z-index: 2;
 }
 .rank-btn-left {
   box-shadow: 0px 0px 4px #ffe81f;
@@ -123,9 +121,9 @@
   text-align: center;
   margin-bottom: 10px;
 }
-.cards{
+.cards {
   overflow-y: hidden;
 }
-.card{
+.card {
   overflow-y: hidden;
 }
