@@ -55,35 +55,31 @@ function Ships() {
     }
   };
   return (
-    <>
-      {filteredShips && (
-        <div className="container">
-          <SearchBar onSearch={(res) => filterShips(res)} />
-          <div>
-            <div className="heading">
-              <p></p>
-              <p className="ship-name">Ship Name</p>
-              <p>Model</p>
-              <p>Hyperdrive Rating</p>
-            </div>
-            {filteredShips.map((ship, index) => {
-              return (
-                <Link to={`/ship/${ship.url.split("/")[5]}`} element={<Ship link={ship.url} />} key={index}>
-                  <ShipItem ships={ship} key={index} />
-                </Link>
-              );
-            })}
-          </div>
-          {hasNext && (
-            <div className="loadbutton-div">
-              <button className={`loadbutton${loading ? "disabled" : ""}`} onClick={onLoadMore} disabled={loading}>
-                Load More
-              </button>
-            </div>
-          )}
+    <div className="container">
+      <SearchBar onSearch={(res) => filterShips(res)} />
+      <div>
+        <div className="heading">
+          <p></p>
+          <p className="ship-name">Ship Name</p>
+          <p>Model</p>
+          <p>Hyperdrive Rating</p>
+        </div>
+        {filteredShips.map((ship, index) => {
+          return (
+            <Link to={`/ship/${ship.url.split("/")[5]}`} element={<Ship link={ship.url} />} key={index}>
+              <ShipItem ships={ship} key={index} />
+            </Link>
+          );
+        })}
+      </div>
+      {hasNext && (
+        <div className="loadbutton-div">
+          <button className={`loadbutton${loading ? "disabled" : ""}`} onClick={onLoadMore} disabled={loading}>
+            Load More
+          </button>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
