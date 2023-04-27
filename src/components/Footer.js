@@ -8,7 +8,7 @@ function Footer() {
         alt=""
         src={require("../assets/footer.png")}
       />
-      <p>Created by Mustafa Güler ©</p>
+      <p><a href="https://www.linkedin.com/in/gulermustafa/">Created by Mustafa Güler ©</a></p>
     </div>
   );
 }
