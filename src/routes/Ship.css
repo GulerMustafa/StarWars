@@ -26,6 +26,7 @@
   display: flex;
   justify-content: space-between;
   grid-template-columns: repeat(2, 1fr);
+  z-index: 2;
 }
 .rank-btn-left {
   box-shadow: 0px 0px 4px #ffe81f;
@@ -118,7 +119,13 @@
   border-bottom: 1px solid #808080;
   padding-bottom: 15px;
 }
-.content .about h2{
+.content .about h2 {
   text-align: center;
   margin-bottom: 10px;
+}
+.cards{
+  overflow-y: hidden;
+}
+.card{
+  overflow-y: hidden;
 }

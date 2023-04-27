@@ -26,7 +26,7 @@ function Ship() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [url]);
 
   const getFilm = async (films) => {
     let items = await Promise.all(
