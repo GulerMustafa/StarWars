@@ -62,7 +62,7 @@ function Ship() {
               <p>{ship.model}</p>
             </div>
             <div className="ship-price">
-              {ship.cost_in_credits > 1 ? <h1>{Number(ship.cost_in_credits).toLocaleString("en-US", { style: "currency", currency: "USD" })}</h1> : <h2>N/A</h2>}
+              {ship.cost_in_credits > 1 ? <p>{Number(ship.cost_in_credits).toLocaleString("en-US", { style: "currency", currency: "USD" })}</p> : <p>N/A</p>}
             </div>
           </div>
         </div>
