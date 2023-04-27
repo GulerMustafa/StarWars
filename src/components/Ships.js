@@ -55,31 +55,35 @@ function Ships() {
     }
   };
   return (
-    <div className="container">
-      <SearchBar onSearch={(res) => filterShips(res)} />
-      <div>
-        <div className="heading">
-          <p></p>
-          <p className="ship-name">Ship Name</p>
-          <p>Model</p>
-          <p>Hyperdrive Rating</p>
-        </div>
-        {filteredShips.map((ship, index) => {
-          return (
-            <Link to={`/ship/${ship.url.split("/")[5]}`} element={<Ship link={ship.url} />} key={index}>
-              <ShipItem ships={ship} key={index} />
-            </Link>
-          );
-        })}
-      </div>
-      {hasNext && (
+    <>
+      {filteredShips && (
         <div className="container">
-          <div className="loadbutton" onClick={onLoadMore} disabled={loading}>
-            <p>Load More</p>
+          <SearchBar onSearch={(res) => filterShips(res)} />
+          <div>
+            <div className="heading">
+              <p></p>
+              <p className="ship-name">Ship Name</p>
+              <p>Model</p>
+              <p>Hyperdrive Rating</p>
+            </div>
+            {filteredShips.map((ship, index) => {
+              return (
+                <Link to={`/ship/${ship.url.split("/")[5]}`} element={<Ship link={ship.url} />} key={index}>
+                  <ShipItem ships={ship} key={index} />
+                </Link>
+              );
+            })}
           </div>
+          {hasNext && (
+            <div className="loadbutton-div">
+              <button className="loadbutton" onClick={onLoadMore} disabled={loading}>
+                Load More
+              </button>
+            </div>
+          )}
         </div>
       )}
-    </div>
+    </>
   );
 }
 
