@@ -76,7 +76,7 @@ function Ships() {
           </div>
           {hasNext && (
             <div className="loadbutton-div">
-              <button className="loadbutton" onClick={onLoadMore} disabled={loading}>
+              <button className={`loadbutton${loading ? "disabled" : ""}`} onClick={onLoadMore} disabled={loading}>
                 Load More
               </button>
             </div>
