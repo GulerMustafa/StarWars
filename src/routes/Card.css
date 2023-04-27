@@ -16,6 +16,7 @@
   will-change: transform;
   transition: transform 0.5s;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 .card:hover {

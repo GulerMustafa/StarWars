@@ -61,7 +61,9 @@ function Ship() {
             <div className="ship-heading">
               <p>{ship.model}</p>
             </div>
-            <div className="ship-price">{ship.cost_in_credits && <h1>{Number(ship.cost_in_credits).toLocaleString("en-US", { style: "currency", currency: "USD" })}</h1>}</div>
+            <div className="ship-price">
+              {ship.cost_in_credits > 1 ? <h1>{Number(ship.cost_in_credits).toLocaleString("en-US", { style: "currency", currency: "USD" })}</h1> : <h2>N/A</h2>}
+            </div>
           </div>
         </div>
         <div className="content">
@@ -77,11 +79,11 @@ function Ship() {
               </div>
               <div className="row">
                 <h4>Max Atmosphering Speed</h4>
-                {ship.max_atmosphering_speed && <p>{ship.max_atmosphering_speed} km/h</p>}
+                {ship.max_atmosphering_speed > 1 ? <p>{ship.max_atmosphering_speed} km/h</p> : <p>N/A</p>}
               </div>
               <div className="row">
                 <h4>Cargo Capacity</h4>
-                {ship.cargo_capacity ? <p>{ship.cargo_capacity}</p> : null}
+                {ship.cargo_capacity > 1 ? <p>{ship.cargo_capacity}</p> : <p>N/A</p>}
               </div>
               <div className="row">
                 <h4>Pilot</h4>
@@ -91,19 +93,19 @@ function Ship() {
             <div className="right">
               <div className="row">
                 <h4>Crew</h4>
-                {ship.crew && <p>{ship.crew}</p>}
+                {ship.crew > 1 ? <p>{ship.crew}</p> : <p>N/A</p>}
               </div>
               <div className="row">
                 <h4>Passengers</h4>
-                {ship.passengers && <p>{ship.passengers}</p>}
+                {ship.passengers > 1 ? <p>{ship.passengers}</p> : <p>N/A</p>}
               </div>
               <div className="row">
                 <h4>MGLT</h4>
-                {ship.consumables && <p>{ship.MGLT}</p>}
+                {ship.consumables > 1 ? <p>{ship.MGLT}</p> : <p>N/A</p>}
               </div>
               <div className="row">
                 <h4>Consumables</h4>
-                {ship.consumables && <p>{ship.consumables}</p>}
+                {ship.consumables > 1 ? <p>{ship.consumables}</p> : <p>N/A</p>}
               </div>
             </div>
           </div>
