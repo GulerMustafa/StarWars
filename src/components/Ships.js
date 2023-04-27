@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Ship from "../routes/Ship";
 import SearchBar from "./SearchBar";
 import axios from "axios";
+import { ReactComponent as Loader } from "../assets/loader.svg"; 
 
 function Ships() {
   const url = "https://swapi.dev/api/starships/";
@@ -75,7 +76,7 @@ function Ships() {
       {hasNext && (
         <div className="loadbutton-div">
           <button className={`loadbutton${loading ? "disabled" : ""}`} onClick={onLoadMore} disabled={loading}>
-            Load More
+          {!loading ? "Load More" : <Loader className="spinner" />}
           </button>
         </div>
       )}
